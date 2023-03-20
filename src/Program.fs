@@ -1,4 +1,9 @@
-﻿[<EntryPoint>]
-let main argv =
-    printfn "Hello from F#"
-    0
+﻿namespace FileSync
+
+module App =
+
+    [<EntryPoint>]
+    let main (argv: string array) =
+        let argvList: string list = argv |> Array.toList
+        let input: Input.CommandLineOptions = Input.parseCommandLine argvList
+        0

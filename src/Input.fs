@@ -8,7 +8,7 @@ module Input =
         destination: string
     }
 
-    let rec parseCommandLine args optionsSoFar =
+    let rec parseCommandLineRec (args: string list) (optionsSoFar: CommandLineOptions) =
         match args with
         // empty list
         | [] -> optionsSoFar
@@ -16,9 +16,18 @@ module Input =
         // verbose
         | "/v"::xs ->
             let newOptionsSoFar = { optionsSoFar with verbose=true }
-            parseCommandLine xs newOptionsSoFar 
+            parseCommandLineRec xs newOptionsSoFar 
 
         // default case
         |x::xs ->
             eprintfn "Options '%s' not recognized" x
-            parseCommandLine xs optionsSoFar
+            parseCommandLineRec xs optionsSoFar
+
+    let parseCommandLine args = 
+        let defaultOptions = {
+            verbose = true;
+            source = ".";
+            destination = ".";
+            }
+        
+        parseCommandLineRec args defaultOptions

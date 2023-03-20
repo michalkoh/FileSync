@@ -9,13 +9,7 @@ type TestClass () =
 
     [<TestMethod>]
     member this.TestMethodPassing () =
-        let defaultOptions = { 
-            verbose = false;
-            source = "quelle";
-            destination = "ziels" 
-        }
-
-        let options = parseCommandLine ["/v"; "/s"]  defaultOptions
+    
+        let options: CommandLineOptions = parseCommandLine ["/v"; "/s"] 
         Assert.IsNotNull(options);
-        Assert.IsTrue(options.verbose)
-        Assert.IsFalse(options.verbose)
+        Assert.IsTrue(options.verbose);
