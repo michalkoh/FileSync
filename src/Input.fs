@@ -4,6 +4,7 @@ module Input =
 
     type CommandLineOptions = {
         verbose: bool
+        preview: bool
         source: string
         target: string
     }
@@ -17,6 +18,11 @@ module Input =
         | "/v"::xs ->
             let newOptionsSoFar: CommandLineOptions = { optionsSoFar with verbose = true }
             parseCommandLineRec xs newOptionsSoFar 
+
+        // preview
+        | "/p"::xs ->
+            let newOptionsSoFar: CommandLineOptions = { optionsSoFar with preview = true }
+            parseCommandLineRec xs newOptionsSoFar
 
         // source
         | "/s"::xs ->
@@ -48,8 +54,9 @@ module Input =
     let parseCommandLine args = 
         let defaultOptions: CommandLineOptions = {
             verbose = true;
+            preview = true;
             source = ".";
             target = ".";
-            }
+        }
         
         parseCommandLineRec args defaultOptions
