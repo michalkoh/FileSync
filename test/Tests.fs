@@ -1,4 +1,4 @@
-namespace Test
+namespace FileSync
 
 open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
@@ -8,8 +8,10 @@ open FileSync.Input
 type TestClass () =
 
     [<TestMethod>]
-    member this.TestMethodPassing () =
-    
-        let options: CommandLineOptions = parseCommandLine ["/v"; "/s"] 
+    member this.ParseCommandLine_ValidOptions_Passed () =
+
+        let options: CommandLineOptions = parseCommandLine ["/v"; "/s"; "source_path"; "/t"; "target_path"] 
         Assert.IsNotNull(options);
         Assert.IsTrue(options.verbose);
+        Assert.AreEqual("source_path", options.source);
+        Assert.AreEqual("target_path", options.target);
