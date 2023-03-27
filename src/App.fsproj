@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Input.fs" />
+    <Compile Include="Synchronize.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 </Project>
